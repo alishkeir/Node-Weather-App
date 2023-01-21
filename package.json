@@ -17,7 +17,8 @@
     },
     "homepage": "https://github.com/alishkeir/Node-Weather-App#readme",
     "dependencies": {
+        "chalk": "^4.1.2",
         "dotenv": "^16.0.3",
-        "postman-request": "^2.88.1-postman.31"
+        "request": "^2.88.2"
     }
 }

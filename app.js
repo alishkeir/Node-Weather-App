@@ -1,14 +1,28 @@
+const chalk = require('chalk');
+const request = require('request');
+
 require('dotenv').config();
 
-const request = require('postman-request');
+const URL = `http://api.weatherstack.com/current?access_key=${process.env.WS_API_KEY}&query=Beirut`;
+const geocodeURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/Beirut%2C%20Lebanon.json?limit=1&access_token=${process.env.MB_ACCESS_TOKEN}`;
 
-const API_KEY = process.env.WS_API_KEY ? process.env.WS_API_KEY : '';
-const URL = `http://api.weatherstack.com/current?access_key=${API_KEY}&query=New%20York`;
+// Weather Forecast
+request({ uri: URL, json: true }, (error, response, body) => {
+    if (body.error) {
+        console.log(chalk.red('Error:\n'), body);
+        return false;
+    }
 
-request(URL, function (error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
+    console.log(body.current);
 });
 
-console.log(process.env.WS_API_KEY);
+// Geocoding
+request({ uri: geocodeURL, json: true }, (error, response, body) => {
+    if (body.error) {
+        console.log(chalk.red('Error:\n'), body);
+        return false;
+    }
+
+    const lat = body.features[0].center[1];
+    const long = body.features[0].center[0];
+});
