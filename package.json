@@ -15,5 +15,9 @@
     "bugs": {
         "url": "https://github.com/alishkeir/Node-Weather-App/issues"
     },
-    "homepage": "https://github.com/alishkeir/Node-Weather-App#readme"
+    "homepage": "https://github.com/alishkeir/Node-Weather-App#readme",
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "postman-request": "^2.88.1-postman.31"
+    }
 }
