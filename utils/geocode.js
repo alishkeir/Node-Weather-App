@@ -9,12 +9,14 @@ const geocode = (address, callback) => {
         if (error) {
             callback('Unable to connect to location services!');
         } else if (body?.features?.length === 0) {
-            callback('The given location is not valid, try another location');
+            callback('The given location is not valid, try another location!');
         } else {
             callback(null, {
                 lat: body.features[0].center[1],
                 long: body.features[0].center[0],
-                location: body.features[0].matching_place_name,
+                location: body.features[0].matching_place_name
+                    ? body.features[0].matching_place_name
+                    : body.features[0].place_name,
             });
         }
     });
